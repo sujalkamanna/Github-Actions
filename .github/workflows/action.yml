@@ -1,11 +1,13 @@
 name: This is first GitHub Action CI CD
 
-on:
-  push:
+on: workflow_dispatch
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: First CI CD
+      - name: Step 1 - Show OS info
         run: cat /etc/os-release
+
+      - name: Step 2 - Show current directory
+        run: pwd
