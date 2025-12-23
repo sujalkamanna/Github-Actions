@@ -1,2 +1,4 @@
 added first ci/cd in GA
 added step 2
+
+added deploy job with step 3
