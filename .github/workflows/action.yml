@@ -1,6 +1,6 @@
 name: This is first GitHub Action CI CD
 
-on: workflow_dispatch
+on: push
 
 jobs:
   build:
@@ -17,4 +17,4 @@ jobs:
     needs: build
     steps:
       - name: Step 3 - adding deploy steps 
-        run: date + "%H:%M:%S"
+        run: echo "Deployment started at $(date +'%H:%M:%S')"
