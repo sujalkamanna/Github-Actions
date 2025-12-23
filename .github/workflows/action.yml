@@ -1,0 +1,11 @@
+name: This is first GitHub Action CI CD
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First CI CD
+        run: cat /etc/os-release
