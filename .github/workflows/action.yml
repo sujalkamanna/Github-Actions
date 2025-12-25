@@ -7,15 +7,15 @@ env:
 
 jobs:
   job1:
-    runs-on: ubunt-latest
+    runs-on: ubuntu-latest
     env:
       JOB_VAR: "I am variable at jobs level"
     steps:
       - name: "step level"
         env:
           STEP_LEVEL: "I am job at steps level"
-          run: |
-            echo "Printing all variables"
-            echo $GLOBAL_VAR
-            echo $JOB_VAR
-            echo $STEP_LEVEL
+        run: |
+          echo "Printing all variables"
+          echo $GLOBAL_VAR
+          echo $JOB_VAR
+          echo $STEP_LEVEL
