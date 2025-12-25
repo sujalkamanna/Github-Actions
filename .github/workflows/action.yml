@@ -12,9 +12,20 @@ jobs:
       - name: second steps
         run: echo "hello from second steps"
 
+      - name: Substeps
+        run: echo "inside Substeps"
 
   jobname2:
-    runs-on: ubuntu-latest 
+    runs-on: ubuntu-latest
     steps:
-      - name: stepname 
+      - name: stepname
         run: echo "hello from second JOB jobname2"
+
+  job3:
+    needs: job_name
+    runs-on: ubuntu-latest
+    steps:
+      - name: "this is inside job3"
+        run: |
+          echo "hello world" > file1.py
+          cat file1.py
