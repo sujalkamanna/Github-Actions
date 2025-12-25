@@ -6,16 +6,24 @@ env:
   GLOBAL_VAR: "I am Global Variable"
 
 jobs:
-  job1:
+  global_var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "step level"
+        run: echo $GLOBAL_VAR
+
+  job_var:
     runs-on: ubuntu-latest
     env:
       JOB_VAR: "I am variable at jobs level"
     steps:
-      - name: "step level"
+      - name: printing jobs at step level
+        run: echo $JOB_VAR
+
+  steps_var:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printing jobs at step level
         env:
-          STEP_LEVEL: "I am job at steps level"
-        run: |
-          echo "Printing all variables"
-          echo $GLOBAL_VAR
-          echo $JOB_VAR
-          echo $STEP_LEVEL
+          STEPS_VAR: "I am variable at steps level"
+        run: echo $STEPS_VAR
