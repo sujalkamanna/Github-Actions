@@ -8,3 +8,15 @@ jobs:
     steps:
       - name: first ci cd pipeline
         run: echo "Hello from github actions"
+
+      - name: second steps
+        run: echo "hello from second steps"
+
+name:
+on: push
+jobs:
+jobname2:
+  runs-on: ubuntu-latest 
+  steps:
+    - name: stepname 
+      run: echo "hello from second JOB jobname2"
