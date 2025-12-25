@@ -12,11 +12,9 @@ jobs:
       - name: second steps
         run: echo "hello from second steps"
 
-name:
-on: push
-jobs:
-jobname2:
-  runs-on: ubuntu-latest 
-  steps:
-    - name: stepname 
-      run: echo "hello from second JOB jobname2"
+
+  jobname2:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: stepname 
+        run: echo "hello from second JOB jobname2"
