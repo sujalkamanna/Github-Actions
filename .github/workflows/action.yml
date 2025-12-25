@@ -1,31 +1,21 @@
-name: My CI CD
+name: github actions pipelines
 
 on: push
 
+env:
+  GLOBAL_VAR: "I am Global Variable"
+
 jobs:
-  job_name:
-    runs-on: ubuntu-latest
+  job1:
+    runs-on: ubunt-latest
+    env:
+      JOB_VAR: "I am variable at jobs level"
     steps:
-      - name: first ci cd pipeline
-        run: echo "Hello from github actions"
-
-      - name: second steps
-        run: echo "hello from second steps"
-
-      - name: Substeps
-        run: echo "inside Substeps"
-
-  jobname2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: stepname
-        run: echo "hello from second JOB jobname2"
-
-  job3:
-    needs: job_name
-    runs-on: ubuntu-latest
-    steps:
-      - name: "this is inside job3"
-        run: |
-          echo "hello world" > file1.py
-          cat file1.py
+      - name: "step level"
+        env:
+          STEP_LEVEL: "I am job at steps level"
+          run: |
+            echo "Printing all variables"
+            echo $GLOBAL_VAR
+            echo $JOB_VAR
+            echo $STEP_LEVEL
