@@ -3,7 +3,8 @@ name: github actions pipelines
 on: push
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Calling Var 1
-      run: echo $VAR_1
+  vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calling Var 1
+        run: echo "${{vars.VAR_1}}""
