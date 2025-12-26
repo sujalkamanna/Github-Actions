@@ -2,28 +2,10 @@ name: github actions pipelines
 
 on: push
 
-env:
-  GLOBAL_VAR: "I am Global Variable"
-
 jobs:
-  global_var:
+  var1:
     runs-on: ubuntu-latest
     steps:
-      - name: "step level"
-        run: echo $GLOBAL_VAR
-
-  job_var:
-    runs-on: ubuntu-latest
-    env:
-      JOB_VAR: "I am variable at jobs level"
-    steps:
-      - name: printing jobs at step level
-        run: echo $JOB_VAR
-
-  steps_var:
-    runs-on: ubuntu-latest
-    steps:
-      - name: printing jobs at step level
-        env:
-          STEPS_VAR: "I am variable at steps level"
-        run: echo $STEPS_VAR
+      - name: "calling var1"
+        run: echo "VAR_1"
+        
