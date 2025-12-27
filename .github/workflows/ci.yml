@@ -10,7 +10,6 @@ jobs:
         run: echo "Inside job_1"
 
   job_2:
-    needs: job_1
     runs-on: ubuntu-latest
     steps:
       - name: inside job_2
@@ -27,7 +26,7 @@ jobs:
 
   job_4:
     needs:
-      - job_1
+      - job_2
       - job_3
     runs-on: ubuntu-latest
     steps:
