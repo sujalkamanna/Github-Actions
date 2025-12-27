@@ -1,12 +1,12 @@
-name: Workflow Jobs and steps
+name: Every 2 Minutes Workflow
 
-on: 
+on:
   schedule:
-    - cron: "37 19 * * *"
+    - cron: "*/2 * * * *"   # runs every 2 minutes automatically
 
 jobs:
-  corn_job:
+  frequent_job:
     runs-on: ubuntu-latest
     steps:
-      - name: added corn jobs
-        run: echo "call on 1:03"
+      - name: Print timestamp
+        run: echo "Workflow triggered at $(date -u) UTC"
