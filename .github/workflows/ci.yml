@@ -1,5 +1,5 @@
 name: Basic pipelines
-on: push
+on: workflow_dispatch
 jobs:
   hello-in-shell:
     runs-on: ubuntu-latest
