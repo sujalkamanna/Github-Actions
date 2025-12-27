@@ -1,34 +1,12 @@
 name: Workflow Jobs and steps
 
-on: push
+on: 
+  schedule:
+    - cron: "4 1 * * *"
 
 jobs:
-  job_1:
+  corn_job:
     runs-on: ubuntu-latest
     steps:
-      - name: inside job_1
-        run: echo "Inside job_1"
-
-  job_2:
-    runs-on: ubuntu-latest
-    steps:
-      - name: inside job_2
-        run: echo "Inside job_2"
-
-  job_3:
-    needs:
-      - job_1
-      - job_2
-    runs-on: ubuntu-latest
-    steps:
-      - name: inside job_3
-        run: echo "Inside job_3"
-
-  job_4:
-    needs:
-      - job_2
-      - job_3
-    runs-on: ubuntu-latest
-    steps:
-      - name: inside job_4
-        run: echo "Inside job_4"
+      - name: added corn jobs
+        run: echo "call on 1:03"
