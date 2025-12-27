@@ -1,10 +1,15 @@
-name: Every 2 Minutes Workflow
+name: Self-Hosted Apache Install
 
-on: push
+on:
+  push:
 
 jobs:
   frequent_job:
     runs-on: self-hosted
     steps:
-      - name: Installing Apache2
-        run: sudo apt install apache2
+      - name: Update and install Apache
+        run: |
+          sudo apt update
+          sudo apt install -y apache2
+      - name: Check Apache status
+        run: systemctl status apache2
