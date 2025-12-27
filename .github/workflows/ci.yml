@@ -1,0 +1,22 @@
+name: Basic pipelines
+on: push
+jobs:
+  hello-in-shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Printing Hello
+        run: echo "Hello world"
+
+  hello-from-python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: In python
+        run: print("Hello World")
+        shell: python
+
+  hello-from-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "World"
