@@ -1,13 +1,10 @@
 name: Every 2 Minutes Workflow
 
-on:
-  schedule:
-    - cron: "*/1 * * * *" # runs every 1 minutes automatically
-  workflow_dispatch:
+on: push
 
 jobs:
   frequent_job:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
-      - name: Print timestamp
-        run: echo "Workflow triggered at $(date -u) UTC"
+      - name: Installing Apache2
+        run: sudo apt install apache2
