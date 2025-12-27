@@ -2,7 +2,7 @@ name: Workflow Jobs and steps
 
 on: 
   schedule:
-    - cron: "4 1 * * *"
+    - cron: "37 19 * * *"
 
 jobs:
   corn_job:
