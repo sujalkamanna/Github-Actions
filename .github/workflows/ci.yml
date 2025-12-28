@@ -1,24 +1,15 @@
-name: Using workflows
+name: Concurrency
 
 on: push
 
+concurrency:
+  group: ci-${{github.ref}}
+  cancel-in-progress: true
+
 jobs:
-  matrix_jobs:
+  job-name:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python: ["3.11", "3.12", "3.13", "3.14"]
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Setup Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: ${{ matrix.python }}
-
-      - name: Verify Python
+      - name: Concurrency Job
         run: |
-          python --version
+          echo "Build"
