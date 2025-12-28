@@ -5,18 +5,23 @@ jobs:
   creating_artifacts:
     runs-on: ubuntu-latest
     steps:
+      - name: Creating Dir
+        run: mkdir creating-dir
+
       - name: Creating artifacts
-        run: echo "creating artifacts file names hello.txt" > hello.txt
+        run: echo "creating artifacts file names hello.txt" > creating-dir/hello.txt
 
       - name: Display File Contents
-        run: cat hello.txt
+        run: cat creating-dir/hello.txt
 
       - name: Uploading artifacts
         uses: actions/upload-artifact@v4
         with:
           name: hello-artifacts
-          path: hello.txt
+          path: creating-dir/hello.txt
 
+      - name: Verify artifact path
+        run: ls -l creating-dir/
   downloading-artifacts:
     needs: creating_artifacts
     runs-on: ubuntu-latest
@@ -25,6 +30,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-artifacts
-          
+
       - name: Reading File
-        run: cat hello.txt
+        run: cat creating-dir/hello.txt
