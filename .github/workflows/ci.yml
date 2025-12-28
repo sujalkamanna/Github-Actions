@@ -30,5 +30,3 @@ jobs:
           name: hello-artifacts
           path: .  # extract directory to root
 
-      - name: Reading File
-        run: cat creating-dir/hello.txt
