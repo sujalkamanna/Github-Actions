@@ -1,4 +1,4 @@
-name: Atrifacts Workflow
+name: Artifacts Workflow
 on: push
 
 jobs:
@@ -18,19 +18,17 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-artifacts
-          path: creating-dir/
+          path: creating-dir/  # upload directory
 
-      - name: Verify artifact path
-        run: ls -l creating-dir/
   downloading-artifacts:
     needs: creating_artifacts
     runs-on: ubuntu-latest
     steps:
-      - name: Adding Actions
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: hello-artifacts
-          path: .  # extract to root
+          path: .  # extract directory to root
 
       - name: Reading File
         run: cat creating-dir/hello.txt
