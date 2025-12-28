@@ -1,15 +1,18 @@
-name: Self-Hosted Apache Install
-
-on:
-  push:
+name: Atrifacts Workflow
+on: push
 
 jobs:
-  frequent_job:
-    runs-on: self-hosted
+  creating_artifacts:
+    runs-on: ubuntu-latest
     steps:
-      - name: Update and install Apache
-        run: |
-          sudo apt update
-          sudo apt install -y apache2
-      - name: Check Apache status
-        run: systemctl status apache2
+      - name: Creating artifacts
+        run: echo "creating artifacts file names hello.txt" > hello.txt
+
+      - name: Display File Contents
+        run: cat hello.txt
+
+      - name: Uploading artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-artifacts
+          path: hello.txt
