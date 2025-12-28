@@ -5,28 +5,10 @@ jobs:
   creating_artifacts:
     runs-on: ubuntu-latest
     steps:
-      - name: Creating Dir
-        run: mkdir creating-dir
-
-      - name: Creating artifacts
-        run: echo "creating artifacts file names hello.txt" > creating-dir/hello.txt
-
-      - name: Display File Contents
-        run: cat creating-dir/hello.txt
-
-      - name: Uploading artifacts
-        uses: actions/upload-artifact@v4
+      - name: Checkout
+        uses: actions/checkout@v6
         with:
-          name: hello-artifacts
-          path: creating-dir/  # upload directory
-
-  downloading-artifacts:
-    needs: creating_artifacts
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: hello-artifacts
-          path: .  # extract directory to root
-
+          fetch-depth: 0           # get full history
+          persist-credentials: true
+          submodules: recursive     # include submodules
+          path: Github-Actions/
