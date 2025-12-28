@@ -13,3 +13,11 @@ jobs:
       - name: Concurrency Job
         run: |
           echo "Build"
+
+      - name: adding if step
+        if: success()
+        run: echo "Build successfull"
+
+      - name: Step 3 Always runs
+        if: always()
+        run: echo "This step always runs, success or failure."
