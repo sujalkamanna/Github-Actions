@@ -1,24 +1,23 @@
-name: AWS Simple Setup
+name: Using workflows
 
-on:
-  push:
-    branches:
-      - main
-
+on: push
 jobs:
-  deploy:
+  matrix_jobs:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18, 20]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v5.1.1
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
         with:
-          aws-access-key-id: ${{ secrets.AWS_PUBLIC_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-west-1
+          node-version: ${{matrix.node}}
 
-      - name: Verify AWS Identity
-        run: aws sts get-caller-identity
+      - run: |
+          npm --version
+          npm test
