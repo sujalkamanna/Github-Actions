@@ -18,7 +18,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-artifacts
-          path: creating-dir/hello.txt
+          path: creating-dir/
 
       - name: Verify artifact path
         run: ls -l creating-dir/
