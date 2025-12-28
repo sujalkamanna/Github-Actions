@@ -16,3 +16,15 @@ jobs:
         with:
           name: hello-artifacts
           path: hello.txt
+
+  downloading-artifacts:
+    needs: creating_artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Adding Actions
+        uses: actions/download-artifact@v4
+        with:
+          name: hello-artifacts
+          
+      - name: Reading File
+        run: cat hello.txt
