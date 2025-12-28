@@ -8,18 +8,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [18, 20]
+        python: ["3.11", "3.12"]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
-          node-version: ${{ matrix.node }}
+          python-version: ${{ matrix.python }}
 
-      - name: Verify Node & npm
+      - name: Verify Python
         run: |
-          node --version
-          npm --version
+          python --version
