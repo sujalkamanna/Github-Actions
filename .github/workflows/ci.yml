@@ -11,4 +11,4 @@ jobs:
           fetch-depth: 0           # get full history
           persist-credentials: true
           submodules: recursive     # include submodules
-          path: Github-Actions/
+          path: my-path/
