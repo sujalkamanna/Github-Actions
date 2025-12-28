@@ -2,13 +2,19 @@ name: Artifacts Workflow
 on: push
 
 jobs:
-  creating_artifacts:
+  Installing-python:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
         with:
-          fetch-depth: 0           # get full history
-          persist-credentials: true
-          submodules: recursive     # include submodules
-          path: my-path/
+          python-version: "3.13"
+
+      - name: Install Dependences
+        run: |
+          python -m pip instakk --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Running python script
+        run: python my_script.py
