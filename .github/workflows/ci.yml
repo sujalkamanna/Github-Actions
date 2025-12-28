@@ -5,13 +5,15 @@ jobs:
   Installing-python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout Code
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v6
+      - name: AwS
+        uses: aws-actions/configure-aws-credentials@v5
         with:
-          python-version: "3.11"  # safer, as 3.13 may not be fully supported
+          aws-public-key: ${{AWS_PUBLIC_KEY}}
+          aws-secret-key: ${{AWS_SECRET_KEY}}
+          aws-region: ap-south-1
 
-      - name: Create and run Python script
-        run: |
-          echo 'print("Hello from runner")' > script.py
-          python script.py
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
