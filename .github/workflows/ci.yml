@@ -13,8 +13,8 @@ jobs:
 
       - name: Install Dependences
         run: |
-          python -m pip instakk --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
-          
+
       - name: Running python script
         run: python my_script.py
