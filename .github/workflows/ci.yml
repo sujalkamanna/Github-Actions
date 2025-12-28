@@ -30,6 +30,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hello-artifacts
+          path: .  # extract to root
 
       - name: Reading File
         run: cat creating-dir/hello.txt
