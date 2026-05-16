@@ -1,0 +1,47 @@
+# .github/workflows/list-aws-secrets.yml
+
+name: List AWS Secrets Manager Secrets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  list-secrets:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Verify AWS identity
+        run: aws sts get-caller-identity
+
+      - name: Print configured region
+        run: |
+          echo "Using AWS Region: ${{ secrets.AWS_REGION }}"
+
+      - name: List AWS Secrets Manager secret names
+        run: |
+          aws secretsmanager list-secrets \
+            --region "${{ secrets.AWS_REGION }}" \
+            --query 'SecretList[*].Name' \
+            --output table
+
+      - name: Print GitHub Actions Variables
+        run: |
+          echo "Repository Variables:"
+          echo "APP_ENV=${{ vars.APP_ENV }}"
+          echo "API_URL=${{ vars.API_URL }}"
+
+      - name: Verify required GitHub secrets exist
+        run: |
+          [ -n "${{ secrets.AWS_ACCESS_KEY_ID }}" ] && echo "AWS_ACCESS_KEY_ID exists"
+          [ -n "${{ secrets.AWS_ACCESS_KEY }}" ] && echo "AWS_ACCESS_KEY exists"
+          [ -n "${{ secrets.AWS_REGION }}" ] && echo "AWS_REGION exists"
